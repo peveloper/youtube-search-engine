@@ -4,7 +4,7 @@ block content
     div#container
         h1.topleft.primaryColor= "MyTube"
         form#f(action="/search", method="get")
-            input.small#bar(name='userQuery' placeholder="Insert your query here" value=userQuery)
+            input.small#bar(name='userQuery' placeholder="Insert your query here" value=userQuery autofocus)
     div#results
         each one in results
             div.result
@@ -14,7 +14,8 @@ block content
     div.footer
         each page in pageNumber
             div.linkcontainer
-                if page!="..."
+                if page>0
                     a.botlink(href="http://localhost:6969/search/" + userQuery + "/" + page)= page
                 else
-                    a.botlink.primaryColor(href="#")= page
+                    b
+                        a.botlink.primaryColor(href="#")=  -1*page
