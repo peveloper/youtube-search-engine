@@ -15,7 +15,7 @@ var defaultPort = "6969";
 var port = normalizePort(process.env.PORT || defaultPort);
 app.set('port', port);
 
-console.log("Server listening on 127.0.0.1 port "+defaultPort);
+console.log("Server listening on 127.0.0.1 port " + defaultPort);
 
 /**
  * Create HTTP server.
