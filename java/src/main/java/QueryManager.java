@@ -21,24 +21,23 @@ public class QueryManager {
     private IndexReader reader;
     private IndexSearcher searcher;
     private Analyzer analyzer;
-    private HashMap<String,ScorePair> map;
+    private HashMap<String,Pairs> map;
     public QueryManager(IndexReader reader, Analyzer analyzer){
         this.reader = reader;
         this.analyzer = analyzer;
         searcher = new IndexSearcher(this.reader);
-        this.map = new HashMap<String,ScorePair>();
+        this.map = new HashMap<String,Pairs>();
 
     }
 
-    private class ScorePair implements Comparable<ScorePair>{
+    private class Pairs implements Comparable<Pairs>{
         int count = 0;
         double idf;
         String field;
         String term;
 
-        ScorePair(int docfreq, String field, String term) {
+        Pairs(int docfreq, String field, String term) {
             count++;
-            //Standard Lucene idf calculation.  This is calculated once per field:term
             idf = Math.pow((1 + Math.log((reader.numDocs() / ((double) docfreq + 1)))),2);
             this.field = field;
             this.term = term;
@@ -49,9 +48,7 @@ public class QueryManager {
         double score() {
             return Math.sqrt(count) * idf;
         }
-
-        //Standard Lucene TF/IDF calculation, if I'm not mistaken about it.
-        public int compareTo(ScorePair pair) {
+        public int compareTo(Pairs pair) {
             if (this.score() < pair.score()) return -1;
             else return 1;
         }
@@ -99,7 +96,7 @@ public class QueryManager {
         BooleanQuery.Builder booleanQuery = new BooleanQuery.Builder();
         booleanQuery.add(titleQuery, BooleanClause.Occur.SHOULD);
         booleanQuery.add(descriptionQuery, BooleanClause.Occur.SHOULD);
-        TopScoreDocCollector collector = TopScoreDocCollector.create(25);
+        TopScoreDocCollector collector = TopScoreDocCollector.create(10);
         searcher.search(booleanQuery.build(),collector);
         ScoreDoc[] hits = collector.topDocs().scoreDocs;
         for(int i=0; i<hits.length;i++){
@@ -124,12 +121,12 @@ public class QueryManager {
         this.reader.close();
     }
 
-    void putTermInMap(String field, String term, int freq, Map<String,ScorePair> map) {
+    void putTermInMap(String field, String term, int freq, Map<String,Pairs> map) {
         String key = field + ":" + term;
         if (map.containsKey(key))
             map.get(key).increment();
         else
-            map.put(key,new ScorePair(freq,field,term));
+            map.put(key,new Pairs(freq,field,term));
     }
 
 
