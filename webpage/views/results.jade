@@ -4,18 +4,20 @@ block content
     div#container
         h1.topleft.primaryColor= "MyTube"
         form#f(action="/search", method="get")
-            input.small#bar(name='userQuery' placeholder="Insert your query here" value=userQuery autofocus)
+            input.small#bar(name='userQuery' placeholder="Insert your query here" value=query autofocus)
     div#results
         each one in results
-            div.result
+            div.oneres
+                img.thumbnail(src=one.image)
+                div.result
 
-                a.primaryColor(href="http://"+one.link)= one.link
-                p= one.text
+                    a.primaryColor(href="http://www.youtube.com/watch?v="+one.link)= one.title
+                    p= one.text
     div.footer
         each page in pageNumber
             div.linkcontainer
                 if page>0
-                    a.botlink(href="http://localhost:6969/search/" + userQuery + "/" + page)= page
+                    a.botlink(href="http://localhost:6969/search/" + query + "/" + page)= page
                 else
                     b
                         a.botlink.primaryColor(href="#")=  -1*page
