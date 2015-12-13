@@ -29,7 +29,7 @@ input{
 .topleft{
   text-align: left;
   margin-top: 10px;
-  width: 30%;
+
 }
 
 .small{
@@ -60,6 +60,7 @@ div.footer{
   text-align: center;
   width: 100%;
   overflow: scroll;
+
 }
 a.botlink{
   padding: 10px;
@@ -85,4 +86,15 @@ div.oneres{
 }
 .thumbnail{
   height:100px;
+}
+label{
+  display: inline-block;
+  margin-left: 20%;
+
+}
+.bar{
+  margin-left: 13%;
+}
+p{
+  display: inline-block;
 }

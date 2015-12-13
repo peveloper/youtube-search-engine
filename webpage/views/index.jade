@@ -4,3 +4,13 @@ block content
   h1.primaryColor= "Youtube Search Engine"
   form#f(action="/search", method="get")
     input#bar(name='userQuery' placeholder="Search for a video ..." autofocus)
+    div.bar
+      label
+        input.primaryColor(type="radio", name="topic", value="NBA")
+        i="NBA"
+      label
+        input.primaryColor(type="radio", name="topic", value="NFL")
+        i="NFL"
+      label
+        input.primaryColor(type="radio", name="topic", value="NBA NFL", checked="checked")
+        i="NBA+NFL"

@@ -2,9 +2,34 @@ extends layout
 
 block content
     div#container
-        h1.topleft.primaryColor= "MyTube"
+        h1.topleft.primaryColor= "Youtube Search Engine"
         form#f(action="/search", method="get")
             input.small#bar(name='userQuery' placeholder="Insert your query here" value=query autofocus)
+            div.bar
+                if topic=="NBA"
+                    label
+                        input.primaryColor(type="radio", name="topic", value="NBA", checked="checked")
+                        i="NBA"
+                else
+                    label
+                        input.primaryColor(type="radio", name="topic", value="NBA")
+                        i="NBA"
+                if topic == "NFL"
+                    label
+                        input.primaryColor(type="radio", name="topic", value="NFL", checked="checked")
+                        i="NFL"
+                else
+                    label
+                        input.primaryColor(type="radio", name="topic", value="NFL")
+                        i="NFL"
+                if topic == "NBA NFL"
+                    label
+                        input.primaryColor(type="radio", name="topic", value="NBA NFL", checked="checked")
+                        i="NBA+NFL"
+                else
+                    label
+                        input.primaryColor(type="radio", name="topic", value="NBA NFL")
+                        i="NBA+NFL"
     div#results
         each one in results
             div.oneres
@@ -14,10 +39,18 @@ block content
                     a.primaryColor(href="http://www.youtube.com/watch?v="+one.link)= one.title
                     p= one.text
     div.footer
+        each page in before
+            div.linkcontainer
+                a.botlink(href="http://localhost:6969/search/"+topic+"/"+ query + "/1")=1
+            p="..."
         each page in pageNumber
             div.linkcontainer
                 if page>0
-                    a.botlink(href="http://localhost:6969/search/" + query + "/" + page)= page
+                    a.botlink(href="http://localhost:6969/search/"+topic+"/"+ query + "/" + page)= page
                 else
                     b
                         a.botlink.primaryColor(href="#")=  -1*page
+        each page in after
+            p="..."
+            div.linkcontainer
+                a.botlink(href="http://localhost:6969/search/"+topic+"/"+ query + "/"+page)= page
