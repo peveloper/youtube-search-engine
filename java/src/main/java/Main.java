@@ -25,7 +25,7 @@ public class Main {
         Directory index = new RAMDirectory();
         final Indexer indexer;
         indexer = new Indexer(analyzer,index);
-        MongoClient mongoClient = new MongoClient("127.0.0.1",12345);
+        MongoClient mongoClient = new MongoClient("127.0.0.1", 27017);
         MongoDatabase db = mongoClient.getDatabase("youtube");
         FindIterable<Document> iterable = db.getCollection("youtube").find();
         iterable.forEach(new Block<Document>() {
