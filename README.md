@@ -6,10 +6,10 @@ A simple youtube-search-engine for the Information Retrieval Semester Project
 - Then, run an instance of the Server in Java,
   - Default values for host and port for both **Mongo** and the WebSocketServer instance can be trivially modified in [Main](https://github.com/peveloper/youtube-search-engine/blob/master/java/src/main/java/Main.java) class
 - Run an instance of the [WebServer](https://github.com/peveloper/youtube-search-engine/tree/master/webpage)
-  - ```
+  ```
     $ npm install
     $ npm start
-    ```
+  ```
 - Surf to the host:port setted and have fun!
 
 # Documentation
