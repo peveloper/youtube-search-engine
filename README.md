@@ -15,5 +15,5 @@ A simple youtube-search-engine for the Information Retrieval Semester Project
 # Documentation
 - Please read the following before starting use the tool [Documentation](https://github.com/peveloper/youtube-search-engine/blob/master/Documentation.pdf)
 
-**Note: The tool just support 2 topics for now, NBA and NFL **
+**Note: The tool just support 2 topics for now, NBA and NFL**
 
